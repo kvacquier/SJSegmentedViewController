@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6891132520444C7A0029F939"
-               BuildableName = "SJSegmentedViewController.framework"
-               BlueprintName = "SJSegmentedViewController"
-               ReferencedContainer = "container:SJSegmentedViewController.xcodeproj">
+               BlueprintIdentifier = "6891134C20444EA30029F939"
+               BuildableName = "SJSegmentedScrollView.framework"
+               BlueprintName = "SJSegmentedScrollView"
+               ReferencedContainer = "container:SJSegmentedScrollView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,10 +47,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6891132520444C7A0029F939"
-            BuildableName = "SJSegmentedViewController.framework"
-            BlueprintName = "SJSegmentedViewController"
-            ReferencedContainer = "container:SJSegmentedViewController.xcodeproj">
+            BlueprintIdentifier = "6891134C20444EA30029F939"
+            BuildableName = "SJSegmentedScrollView.framework"
+            BlueprintName = "SJSegmentedScrollView"
+            ReferencedContainer = "container:SJSegmentedScrollView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,10 +65,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6891132520444C7A0029F939"
-            BuildableName = "SJSegmentedViewController.framework"
-            BlueprintName = "SJSegmentedViewController"
-            ReferencedContainer = "container:SJSegmentedViewController.xcodeproj">
+            BlueprintIdentifier = "6891134C20444EA30029F939"
+            BuildableName = "SJSegmentedScrollView.framework"
+            BlueprintName = "SJSegmentedScrollView"
+            ReferencedContainer = "container:SJSegmentedScrollView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
