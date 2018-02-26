@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "689112F1204448A80029F939"
-               BuildableName = "SJSegmentedScrollViewController.framework"
-               BlueprintName = "SJSegmentedScrollViewController"
-               ReferencedContainer = "container:SJSegmentedScrollViewController.xcodeproj">
+               BlueprintIdentifier = "6891132520444C7A0029F939"
+               BuildableName = "SJSegmentedViewController.framework"
+               BlueprintName = "SJSegmentedViewController"
+               ReferencedContainer = "container:SJSegmentedViewController.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,10 +47,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "689112F1204448A80029F939"
-            BuildableName = "SJSegmentedScrollViewController.framework"
-            BlueprintName = "SJSegmentedScrollViewController"
-            ReferencedContainer = "container:SJSegmentedScrollViewController.xcodeproj">
+            BlueprintIdentifier = "6891132520444C7A0029F939"
+            BuildableName = "SJSegmentedViewController.framework"
+            BlueprintName = "SJSegmentedViewController"
+            ReferencedContainer = "container:SJSegmentedViewController.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,10 +65,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "689112F1204448A80029F939"
-            BuildableName = "SJSegmentedScrollViewController.framework"
-            BlueprintName = "SJSegmentedScrollViewController"
-            ReferencedContainer = "container:SJSegmentedScrollViewController.xcodeproj">
+            BlueprintIdentifier = "6891132520444C7A0029F939"
+            BuildableName = "SJSegmentedViewController.framework"
+            BlueprintName = "SJSegmentedViewController"
+            ReferencedContainer = "container:SJSegmentedViewController.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
