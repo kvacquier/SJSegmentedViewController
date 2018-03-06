@@ -30,6 +30,12 @@ class SJSegmentView: UIScrollView {
         }
     }
     
+    var unselectedSegmentViewColor: UIColor? {
+        didSet {
+            unselectedSegmentView?.backgroundColor = unselectedSegmentViewColor
+        }
+    }
+    
     var titleColor: UIColor? {
         didSet {
             for segment in segments {
@@ -65,6 +71,7 @@ class SJSegmentView: UIScrollView {
     var segments = [SJSegmentTab]()
     var segmentContentView: UIView?
     var didSelectSegmentAtIndex: DidSelectSegmentAtIndex?
+    var unselectedSegmentView: UIView?
     var selectedSegmentView: UIView?
     var xPosConstraints: NSLayoutConstraint?
     var contentViewWidthConstraint: NSLayoutConstraint?
@@ -104,9 +111,7 @@ class SJSegmentView: UIScrollView {
                                     forKeyPath: "contentOffset",
                                     context: nil)
         
-        NotificationCenter.default.removeObserver(self,
-                                                            name:NSNotification.Name("DidChangeSegmentIndex"),
-                                                            object: nil)
+        NotificationCenter.default.removeObserver(self, name:NSNotification.Name("DidChangeSegmentIndex"), object: nil)
     }
     
     @objc func didChangeSegmentIndex(_ notification: Notification) {
@@ -136,7 +141,7 @@ class SJSegmentView: UIScrollView {
             createSegmentFor(controller, width: segmentWidth, index: index)
             index += 1
         }
-        
+        createUnselectedSegmentView()
         createSelectedSegmentView(segmentWidth)
         
         //Set first button as selected
@@ -151,28 +156,14 @@ class SJSegmentView: UIScrollView {
         addSubview(segmentContentView!)
         
         let contentViewWidth = titleWidth * CGFloat((controllers?.count)!)
-        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[contentView]|",
-                                                                                   options: [],
-                                                                                   metrics: nil,
-                                                                                   views: ["contentView": segmentContentView!,
-                                                                                    "mainView": self])
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[contentView]|", options: [], metrics: nil, views: ["contentView": segmentContentView!, "mainView": self])
         addConstraints(horizontalConstraints)
         
-        contentViewWidthConstraint = NSLayoutConstraint(item: segmentContentView!,
-                                                        attribute: .width,
-                                                        relatedBy: .equal,
-                                                        toItem: nil,
-                                                        attribute: .notAnAttribute,
-                                                        multiplier: 1.0,
-                                                        constant: contentViewWidth)
+        contentViewWidthConstraint = NSLayoutConstraint(item: segmentContentView!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: contentViewWidth)
         addConstraint(contentViewWidthConstraint!)
         
         
-        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[contentView(==mainView)]|",
-                                                                                 options: [],
-                                                                                 metrics: nil,
-                                                                                 views: ["contentView": segmentContentView!,
-                                                                                    "mainView": self])
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[contentView(==mainView)]|", options: [], metrics: nil, views: ["contentView": segmentContentView!, "mainView": self])
         addConstraints(verticalConstraints)
     }
     
@@ -217,6 +208,42 @@ class SJSegmentView: UIScrollView {
                                                                                  metrics: nil,
                                                                                  views: ["view": segmentView])
         segmentContentView!.addConstraints(verticalConstraints)
+        
+        if index != 0 {
+            let borderView = UIView()
+            borderView.backgroundColor = unselectedSegmentViewColor
+            borderView.translatesAutoresizingMaskIntoConstraints = false
+            segmentView.addSubview(borderView)
+            
+            let leading = NSLayoutConstraint(item: borderView,
+                                              attribute: .leading,
+                                              relatedBy: .equal,
+                                              toItem: segmentView,
+                                              attribute: .leading,
+                                              multiplier: 1.0,
+                                              constant: 0)
+            let top = NSLayoutConstraint(item: borderView,
+                                         attribute: .top,
+                                         relatedBy: .equal,
+                                         toItem: segmentView,
+                                         attribute: .top,
+                                         multiplier: 1.0,
+                                         constant: 4)
+            let bottom = NSLayoutConstraint(item: borderView,
+                                            attribute: .bottom,
+                                            relatedBy: .equal,
+                                            toItem: segmentView,
+                                            attribute: .bottom,
+                                            multiplier: 1.0,
+                                            constant: -4.0 - selectedSegmentViewHeight!)
+            let width = NSLayoutConstraint(item: borderView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 1)
+            
+            segmentContentView!.addConstraint(leading)
+            segmentContentView!.addConstraint(top)
+            segmentContentView!.addConstraint(bottom)
+            segmentContentView!.addConstraint(width)
+        }
+        
         segments.append(segmentView)
     }
     
@@ -249,6 +276,37 @@ class SJSegmentView: UIScrollView {
                                                                                  options: [],
                                                                                  metrics: ["height": selectedSegmentViewHeight!],
                                                                                  views: ["view": segmentView])
+        segmentContentView!.addConstraints(verticalConstraints)
+    }
+    
+    func createUnselectedSegmentView() {
+        
+        let segmentView = UIView()
+        segmentView.backgroundColor = unselectedSegmentViewColor
+        segmentView.translatesAutoresizingMaskIntoConstraints = false
+        segmentContentView!.addSubview(segmentView)
+        unselectedSegmentView = segmentView
+        
+        xPosConstraints = NSLayoutConstraint(item: segmentView,
+                                             attribute: .leading,
+                                             relatedBy: .equal,
+                                             toItem: segmentContentView!,
+                                             attribute: .leading,
+                                             multiplier: 1.0,
+                                             constant: 0.0)
+        segmentContentView!.addConstraint(xPosConstraints!)
+        
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[view(==segment)]",
+                                                                   options: [],
+                                                                   metrics: nil,
+                                                                   views: ["view": segmentView,
+                                                                           "segment": segmentContentView!])
+        segmentContentView!.addConstraints(horizontalConstraints)
+        
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[view(height)]|",
+                                                                 options: [],
+                                                                 metrics: ["height": selectedSegmentViewHeight!],
+                                                                 views: ["view": segmentView])
         segmentContentView!.addConstraints(verticalConstraints)
     }
     

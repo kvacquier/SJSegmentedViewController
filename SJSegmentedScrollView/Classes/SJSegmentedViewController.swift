@@ -108,6 +108,12 @@ import UIKit
         }
     }
     
+    open var unselectedSegmentViewColor = UIColor.lightGray {
+        didSet {
+            segmentedScrollView.unselectedSegmentViewColor = unselectedSegmentViewColor
+        }
+    }
+    
     /**
      *  Set height for selected segment view.
      *
