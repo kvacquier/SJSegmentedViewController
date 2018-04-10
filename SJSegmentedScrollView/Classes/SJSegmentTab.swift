@@ -64,6 +64,7 @@ open class SJSegmentTab: UIView {
     
     open func setLineBreakMode(mode: NSLineBreakMode) {
         button.titleLabel?.lineBreakMode = mode
+        button.titleLabel?.textAlignment = .center
         button.titleLabel?.numberOfLines = 0
     }
 
