@@ -38,6 +38,7 @@ open class SJSegmentTab: UIView {
 
 	convenience init(title: String) {
 		self.init(frame: CGRect.zero)
+        setLineBreakMode(mode: NSLineBreakMode.byWordWrapping)
         setTitle(title)
 	}
 
@@ -46,6 +47,7 @@ open class SJSegmentTab: UIView {
 
 		insertSubview(view, at: 0)
 		view.removeConstraints(view.constraints)
+        setLineBreakMode(mode: NSLineBreakMode.byWordWrapping)
 		addConstraintsToView(view)
 	}
 
@@ -59,6 +61,11 @@ open class SJSegmentTab: UIView {
 		addSubview(button)
 		addConstraintsToView(button)
 	}
+    
+    open func setLineBreakMode(mode: NSLineBreakMode) {
+        button.titleLabel?.lineBreakMode = mode
+        button.titleLabel?.numberOfLines = 0
+    }
 
 	func addConstraintsToView(_ view: UIView) {
 
@@ -80,7 +87,6 @@ open class SJSegmentTab: UIView {
 	}
     
     open func setTitle(_ title: String) {
-        
         button.setTitle(title, for: .normal)
     }
 

@@ -21,7 +21,7 @@ class ViewController: SJSegmentedViewController {
 
 			let firstViewController = storyboard
 				.instantiateViewController(withIdentifier: "FirstTableViewController")
-			firstViewController.title = "First"
+            firstViewController.title = "First\nTOTORO"
 
 			let secondViewController = storyboard
 				.instantiateViewController(withIdentifier: "SecondViewController")
@@ -46,6 +46,7 @@ class ViewController: SJSegmentedViewController {
 			headerViewHeight = 200
 			selectedSegmentViewHeight = 5.0
 			headerViewOffsetHeight = 31.0
+            segmentViewHeight = 100
 			segmentTitleColor = .gray
 			selectedSegmentViewColor = .red
             unselectedSegmentViewColor = .lightGray
@@ -57,6 +58,7 @@ class ViewController: SJSegmentedViewController {
 		}
 
 		title = "Segment"
+        
 		super.viewDidLoad()
 	}
 
